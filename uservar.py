@@ -1,8 +1,11 @@
 import os, xbmc, xbmcaddon
 
-# Dont need to edit just here for icons stored locally
+#########################################################
+### Global Variables ####################################
+#########################################################
 PATH           = xbmcaddon.Addon().getAddonInfo('path')
 ART            = os.path.join(PATH, 'resources', 'art')
+#########################################################
 
 #########################################################
 ### User Edit Variables #################################
@@ -28,9 +31,10 @@ YOUTUBEFILE    = 'http://'
 ADDONFILE      = 'http://'
 # Text File for advanced settings.  Leave as 'http://' to ignore
 ADVANCEDFILE   = 'http://'
+#########################################################
 
 #########################################################
-### THEMING MENU ITEMS ##################################
+### Theming Menu Items ##################################
 #########################################################
 # If you want to use locally stored icons the place them in the Resources/Art/
 # folder of the wizard then use os.path.join(ART, 'imagename.png')
@@ -50,7 +54,7 @@ ICONREAL       = os.path.join(ART, 'keepdebrid.png')
 ICONLOGIN      = os.path.join(ART, 'keeplogin.png')
 ICONCONTACT    = os.path.join(ART, 'information.png')
 ICONSETTINGS   = os.path.join(ART, 'settings.png')
-# Hide the ====== seperators 'Yes' or 'No'
+# Hide the section seperators 'Yes' or 'No'
 HIDESPACERS    = 'No'
 # Character used in seperator
 SPACER         = '='
@@ -81,8 +85,9 @@ CONTACTFANART  = 'http://'
 #########################################################
 
 #########################################################
-### AUTO UPDATE #########################################
-########## FOR THOSE WITH NO REPO #######################
+### Auto Update                   #######################
+###        For Those With No Repo #######################
+#########################################################
 # Enable Auto Update 'Yes' or 'No'
 AUTOUPDATE     = 'Yes'
 # Url to wizard version
@@ -90,8 +95,9 @@ WIZARDFILE     = BUILDFILE
 #########################################################
 
 #########################################################
-### AUTO INSTALL ########################################
-########## REPO IF NOT INSTALLED ########################
+### Auto Install                 ########################
+###        Repo If Not Installed ########################
+#########################################################
 # Enable Auto Install 'Yes' or 'No'
 AUTOINSTALL    = 'Yes'
 # Addon ID for the repository
@@ -103,7 +109,7 @@ REPOZIPURL     = 'https://raw.githubusercontent.com/drinfernoo/drinfernoo.github
 #########################################################
 
 #########################################################
-### NOTIFICATION WINDOW##################################
+### Notification Window #################################
 #########################################################
 # Enable Notification screen Yes or No
 ENABLE         = 'Yes'

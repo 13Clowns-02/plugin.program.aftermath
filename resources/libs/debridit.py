@@ -109,7 +109,7 @@ DEBRIDID = {
 		'file'     : os.path.join(REALFOLD, 'url_debrid'),
 		'settings' : os.path.join(ADDOND, 'script.module.urlresolver', 'settings.xml'),
 		'default'  : 'RealDebridResolver_client_id',
-		'data'     : ['RealDebridResolver_autopick', 'RealDebridResolver_client_id', 'RealDebridResolver_client_secret', 'RealDebridResolver_enabled', 'RealDebridResolver_login', 'RealDebridResolver_priority', 'RealDebridResolver_refresh', 'RealDebridResolver_token'],
+		'data'     : ['RealDebridResolver_autopick', 'RealDebridResolver_client_id', 'RealDebridResolver_client_secret', 'RealDebridResolver_enabled', 'RealDebridResolver_login', 'RealDebridResolver_priority', 'RealDebridResolver_refresh', 'RealDebridResolver_token', 'RealDebridResolver_torrents'],
 		'activate' : 'RunPlugin(plugin://script.module.urlresolver/?mode=auth_rd)'},
 	'rurlrd': {
 		'name'     : 'ResolveURL RD',
@@ -121,7 +121,7 @@ DEBRIDID = {
 		'file'     : os.path.join(REALFOLD, 'resurl_debrid'),
 		'settings' : os.path.join(ADDOND, 'script.module.resolveurl', 'settings.xml'),
 		'default'  : 'RealDebridResolver_client_id',
-		'data'     : ['RealDebridResolver_autopick', 'RealDebridResolver_client_id', 'RealDebridResolver_client_secret', 'RealDebridResolver_enabled', 'RealDebridResolver_login', 'RealDebridResolver_priority', 'RealDebridResolver_refresh', 'RealDebridResolver_token'],
+		'data'     : ['RealDebridResolver_autopick', 'RealDebridResolver_client_id', 'RealDebridResolver_client_secret', 'RealDebridResolver_enabled', 'RealDebridResolver_login', 'RealDebridResolver_priority', 'RealDebridResolver_refresh', 'RealDebridResolver_token', 'RealDebridResolver_torrents', 'RealDebridResolver_cached_only'],
 		'activate' : 'RunPlugin(plugin://script.module.resolveurl/?mode=auth_rd)'},
 	'urlpm': {
 		'name'     : 'URLResolver PM',
@@ -132,8 +132,8 @@ DEBRIDID = {
 		'fanart'   : os.path.join(ADDONS, 'script.module.urlresolver', 'fanart.jpg'),
 		'file'     : os.path.join(REALFOLD, 'pmurl_debrid'),
 		'settings' : os.path.join(ADDOND, 'script.module.urlresolver', 'settings.xml'),
-		'default'  : 'PremiumizeMeResolver_username',
-		'data'     : ['PremiumizeMeResolver_enabled', 'PremiumizeMeResolver_login', 'PremiumizeMeResolver_password', 'PremiumizeMeResolver_priority', 'PremiumizeMeResolver_use_https', 'PremiumizeMeResolver_username'],
+		'default'  : 'PremiumizeMeResolver_password',
+		'data'     : ['PremiumizeMeResolver_enabled', 'PremiumizeMeResolver_login', 'PremiumizeMeResolver_password', 'PremiumizeMeResolver_priority', 'PremiumizeMeResolver_torrents'],
 		'activate' : ''},
 	'rurlpm': {
 		'name'     : 'ResolveURL PM',
@@ -144,8 +144,8 @@ DEBRIDID = {
 		'fanart'   : os.path.join(ADDONS, 'script.module.resolveurl', 'fanart.jpg'),
 		'file'     : os.path.join(REALFOLD, 'pmrurl_debrid'),
 		'settings' : os.path.join(ADDOND, 'script.module.resolveurl', 'settings.xml'),
-		'default'  : 'PremiumizeMeResolver_username',
-		'data'     : ['PremiumizeMeResolver_enabled', 'PremiumizeMeResolver_login', 'PremiumizeMeResolver_password', 'PremiumizeMeResolver_priority', 'PremiumizeMeResolver_use_https', 'PremiumizeMeResolver_username'],
+		'default'  : 'PremiumizeMeResolver_token',
+		'data'     : ['PremiumizeMeResolver_enabled', 'PremiumizeMeResolver_priority', 'PremiumizeMeResolver_token', 'PremiumizeMeResolver_torrents', 'PremiumizeMeResolver_cached_only'],
 		'activate' : ''}
 }
 

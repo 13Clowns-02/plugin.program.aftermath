@@ -52,7 +52,6 @@ FAVOURITES       = os.path.join(USERDATA,  'favourites.xml')
 PROFILES         = os.path.join(USERDATA,  'profiles.xml')
 GUISETTINGS      = os.path.join(USERDATA,  'guisettings.xml')
 THUMBS           = os.path.join(USERDATA,  'Thumbnails')
-ANIMATEDGIFS           = os.path.join(ADDOND,  'script.module.metadatautils', 'animatedgifs')
 DATABASE         = os.path.join(USERDATA,  'Database')
 FANART           = os.path.join(PLUGIN,    'fanart.jpg')
 ICON             = os.path.join(PLUGIN,    'icon.png')
@@ -439,37 +438,10 @@ def apkScraper(name=""):
             except:
                 wiz.log("Error on: %s" % name)
         if x == 0: addFile("Error Kodi Scraper Is Currently Down.")
-    elif name == 'spmc':
-        spmcurl1 = 'https://github.com/koying/SPMC/releases'
-        url1 = wiz.openURL(spmcurl1).replace('\n', '').replace('\r', '').replace('\t', '')
-        x = 0
-        match1 = re.compile('<div.+?lass="release-body.+?div class="release-header".+?a href=.+?>(.+?)</a>.+?ul class="release-downloads">(.+?)</ul>.+?/div>').findall(url1)
-
-        addFile("Official SPMC Apk\'s", themeit=THEME1)
-
-        for name, urls in match1:
-            tempurl = ''
-            match2 = re.compile('<li>.+?<a href="(.+?)" rel="nofollow">.+?<small class="text-gray float-right">(.+?)</small>.+?strong>(.+?)</strong>.+?</a>.+?</li>').findall(urls)
-            for apkurl, apksize, apkname in match2:
-                if apkname.find('armeabi') == -1: continue
-                if apkname.find('launcher') > -1: continue
-                tempurl = urljoin('https://github.com', apkurl)
-                break
-            if tempurl == '': continue
-            try:
-                name = "SPMC %s" % name
-                title = "[COLOR %s]%s[/COLOR] [COLOR %s]%s[/COLOR]" % (COLOR1, name, COLOR2, apksize.replace(' ', ''))
-                download = tempurl
-                addFile(title, 'apkinstall', name, download)
-                x += 1
-            except Exception, e:
-                wiz.log("Error on: %s / %s" % (name, str(e)))
-        if x == 0: addFile("Error SPMC Scraper Is Currently Down.")
 
 def apkMenu(name=None, url=None):
     if url == None:
         addDir ('Official Kodi Apk\'s', 'apkscrape', 'kodi', icon=ICONAPK, themeit=THEME1)
-        addDir ('Official SPMC Apk\'s', 'apkscrape', 'spmc', icon=ICONAPK, themeit=THEME1)
         if HIDESPACERS == 'No': addFile(wiz.sep(), '', themeit=THEME3)
     if not APKFILE == 'http://':
         if url == None:
@@ -2374,14 +2346,18 @@ def totalClean():
         clearThumb('total')
 
 def clearThumb(type=None):
+    thumb_locations = {THUMBS,
+        os.path.join(ADDOND, 'script.module.metadatautils','animatedgifs'),
+        os.path.join(ADDOND, 'script.extendedinfo', 'images')}
+    
     latest = wiz.latestDB('Textures')
     if not type == None: choice = 1
-    else: choice = DIALOG.yesno(ADDONTITLE, '[COLOR %s]Would you like to delete the %s and Thumbnails folder?' % (COLOR2, latest), "They will repopulate on the next startup[/COLOR]", nolabel='[B][COLOR red]Don\'t Delete[/COLOR][/B]', yeslabel='[B][COLOR springgreen]Delete Thumbs[/COLOR][/B]')
+    else: choice = DIALOG.yesno(ADDONTITLE, '[COLOR %s]Would you like to delete the %s and related thumbnail folders?' % (COLOR2, latest), "They will repopulate on the next startup[/COLOR]", nolabel='[B][COLOR red]Don\'t Delete[/COLOR][/B]', yeslabel='[B][COLOR springgreen]Delete Thumbs[/COLOR][/B]')
     if choice == 1:
         try: wiz.removeFile(os.join(DATABASE, latest))
         except: wiz.log('Failed to delete, Purging DB.'); wiz.purgeDb(latest)
-        wiz.removeFolder(THUMBS)
-        wiz.removeFolder(ANIMATEDGIFS)
+        for i in thumb_locations:
+            wiz.removeFolder(i)
         #if not type == 'total': wiz.killxbmc()
     else: wiz.log('Clear thumbnames cancelled')
     wiz.redoThumbs()

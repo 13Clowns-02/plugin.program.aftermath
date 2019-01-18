@@ -48,7 +48,7 @@ KEEPLOGIN      = wiz.getS('keeplogin')
 LOGINSAVE      = wiz.getS('loginlastsave')
 COLOR1         = uservar.COLOR1
 COLOR2         = uservar.COLOR2
-ORDER          = ['fanart-13clowns', 'fanart-exodusredux', 'fanart-gaia', 'fanart-magicality', 'fanart-metadatautils', 'fanart-placenta', 'fanart-zanni', 'imdb-13clowns', 'imdb-exodusredux', 'imdb-gaia', 'imdb-magicality', 'imdb-placenta', 'imdb-zanni', 'login-netflix', 'omdb-metadatautils', 'omdb-metahandler', 'login-opensubtitles', 'login-opensubsbyopensubs', 'login-orion', 'tmdb-13clowns', 'tmdb-exodusredux', 'login-eis', 'tmdb-gaia', 'tmdb-magicality' ,'tmdb-metadatautils', 'tmdb-metahandler', 'tmdb-eis', 'tmdb-openmeta', 'tmdb-placenta', 'tmdb-seren', 'trakt-openmeta', 'trakt-seren', 'tvdb-metahandler', 'tvdb-openmeta', 'tvdb-seren', 'location-yahoo']
+ORDER          = ['fanart-13clowns', 'fanart-exodusredux', 'fanart-gaia', 'fanart-magicality', 'fanart-metadatautils', 'fanart-placenta', 'fanart-zanni', 'imdb-13clowns', 'imdb-exodusredux', 'imdb-gaia', 'imdb-magicality', 'imdb-placenta', 'imdb-zanni', 'login-iagl', 'login-iarl', 'login-netflix', 'omdb-metadatautils', 'omdb-metahandler', 'login-opensubtitles', 'login-opensubsbyopensubs', 'login-orion', 'tmdb-13clowns', 'tmdb-exodusredux', 'login-eis', 'tmdb-gaia', 'tmdb-magicality' ,'tmdb-metadatautils', 'tmdb-metahandler', 'tmdb-eis', 'tmdb-openmeta', 'tmdb-placenta', 'tmdb-seren', 'trakt-openmeta', 'trakt-seren', 'tvdb-metahandler', 'tvdb-openmeta', 'tvdb-seren', 'location-yahoo']
 
 LOGINID = {
 	'login-opensubtitles': {
@@ -494,6 +494,30 @@ LOGINID = {
 		'settings' : os.path.join(ADDOND, 'weather.yahoo', 'settings.xml'),
 		'default'  : 'Location1',
 		'data'     : ['Location1', 'Location1id', 'Location2', 'Location2id', 'Location3', 'Location3id', 'Location4', 'Location4id', 'Location5', 'Location5id'],
+		'activate' : ''},
+	'login-iarl': {
+		'name'     : 'Internet Archive - IARL',
+		'plugin'   : 'plugin.program.iarl',
+		'saved'    : 'login-iarl',
+		'path'     : os.path.join(ADDONS, 'plugin.program.iarl'),
+		'icon'     : os.path.join(ADDONS, 'plugin.program.iarl', 'icon.png'),
+		'fanart'   : os.path.join(ADDONS, 'plugin.program.iarl', 'fanart.jpg'),
+		'file'     : os.path.join(LOGINFOLD, 'iarl_login'),
+		'settings' : os.path.join(ADDOND, 'plugin.program.iarl', 'settings.xml'),
+		'default'  : 'iarl_setting_ia_username',
+		'data'     : ['iarl_setting_ia_username', 'iarl_setting_ia_password', 'iarl_enable_login'],
+		'activate' : ''},
+	'login-iagl': {
+		'name'     : 'Internet Archive - IAGL',
+		'plugin'   : 'plugin.program.iagl',
+		'saved'    : 'login-iagl',
+		'path'     : os.path.join(ADDONS, 'plugin.program.iagl'),
+		'icon'     : os.path.join(ADDONS, 'plugin.program.iagl', 'icon.png'),
+		'fanart'   : os.path.join(ADDONS, 'plugin.program.iagl', 'fanart.jpg'),
+		'file'     : os.path.join(LOGINFOLD, 'iagl_login'),
+		'settings' : os.path.join(ADDOND, 'plugin.program.iagl', 'settings.xml'),
+		'default'  : 'iagl_setting_ia_username',
+		'data'     : ['iagl_setting_ia_username', 'iagl_setting_ia_password', 'iagl_setting_enable_login'],
 		'activate' : ''}
 }
 

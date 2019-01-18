@@ -128,7 +128,7 @@ THIRD3NAME     = ADDON.getSetting('wizard3name')
 THIRD3URL      = ADDON.getSetting('wizard3url')
 BACKUPLOCATION = ADDON.getSetting('path') if not ADDON.getSetting('path') == '' else 'special://home/'
 MYBUILDS       = os.path.join(BACKUPLOCATION, 'My_Builds', '')
-LOGFILES       = ['log', 'xbmc.old.log', 'kodi.log', 'kodi.old.log', 'spmc.log', 'spmc.old.log', 'tvmc.log', 'tvmc.old.log']
+LOGFILES       = ['log', 'xbmc.old.log', 'kodi.log', 'kodi.old.log', 'spmc.log', 'spmc.old.log', 'tvmc.log', 'tvmc.old.log', 'dmp']
 DEFAULTPLUGINS = ['metadata.album.universal', 'metadata.artists.universal', 'metadata.common.fanart.tv', 'metadata.common.imdb.com', 'metadata.common.musicbrainz.org', 'metadata.themoviedb.org', 'metadata.tvdb.com', 'service.xbmc.versioncheck']
 MAXWIZSIZE     = [100, 200, 300, 400, 500, 1000]
 MAXWIZLINES    = [100, 200, 300, 400, 500]
@@ -501,7 +501,8 @@ def getCacheSize():
 		(os.path.join(ADDOND, 'plugin.video.zanni', 'cache.meta.5.db')),
 		(os.path.join(ADDOND, 'plugin.video.zanni', 'cache.providers.13.db')),
 		(os.path.join(ADDOND, 'plugin.video.seren', 'cache.db')),
-		(os.path.join(ADDOND, 'plugin.video.seren', 'torrentScrape.db'))]
+		(os.path.join(ADDOND, 'plugin.video.seren', 'torrentScrape.db')),
+		(os.path.join(ADDOND, 'script.module.simplecache', 'simplecache.db'))]
 	cachelist = [
 		(ADDOND),
 		(os.path.join(HOME,'cache')),
@@ -509,10 +510,30 @@ def getCacheSize():
 		(os.path.join('/private/var/mobile/Library/Caches/AppleTV/Video/', 'Other')),
 		(os.path.join('/private/var/mobile/Library/Caches/AppleTV/Video/', 'LocalAndRental')),
 		(os.path.join(ADDOND,'script.module.simple.downloader')),
-		(os.path.join(ADDOND,'plugin.video.itv','Images'))]
+		(os.path.join(ADDOND,'plugin.video.itv','Images')),
+		(os.path.join(ADDOND, 'script.extendedinfo', 'images')),
+		(os.path.join(ADDOND, 'script.extendedinfo', 'TheMovieDB')),
+		(os.path.join(ADDOND, 'script.extendedinfo', 'YouTube')),
+		(os.path.join(ADDOND, 'plugin.program.iagl', 'temp_iagl')),
+		(os.path.join(ADDOND, 'plugin.program.iagl', 'list_cache')),
+		(os.path.join(ADDOND, 'plugin.program.iarl', 'temp_iarl')),
+		(os.path.join(ADDOND, 'plugin.program.iarl', 'list_cache')),
+		(os.path.join(ADDOND, 'plugin.program.autocompletion', 'Google')),
+		(os.path.join(ADDOND, 'plugin.program.autocompletion', 'Bing')),
+		(os.path.join(ADDOND, 'plugin.video.openmeta', '.storage'))]
 	if not PROFILEADDONDATA == ADDOND:
 		cachelist.append(os.path.join(PROFILEADDONDATA,'script.module.simple.downloader'))
 		cachelist.append(os.path.join(PROFILEADDONDATA,'plugin.video.itv','Images'))
+		cachelist.append(os.path.join(ADDOND, 'script.extendedinfo', 'images'))
+		cachelist.append(os.path.join(ADDOND, 'script.extendedinfo', 'TheMovieDB')),
+		cachelist.append(os.path.join(ADDOND, 'script.extendedinfo', 'YouTube')),
+		cachelist.append(os.path.join(ADDOND, 'plugin.program.iagl', 'temp_iagl')),
+		cachelist.append(os.path.join(ADDOND, 'plugin.program.iagl', 'list_cache')),
+		cachelist.append(os.path.join(ADDOND, 'plugin.program.iarl', 'temp_iarl')),
+		cachelist.append(os.path.join(ADDOND, 'plugin.program.iarl', 'list_cache')),
+		cachelist.append(os.path.join(ADDOND, 'plugin.program.autocompletion', 'Google')),
+		cachelist.append(os.path.join(ADDOND, 'plugin.program.autocompletion', 'Bing')),
+		cachelist.append(os.path.join(ADDOND, 'plugin.video.openmeta', '.storage')),
 		cachelist.append(PROFILEADDONDATA)
 
 	totalsize = 0
@@ -1366,7 +1387,7 @@ def convertAdvanced():
 ###BACK UP/RESTORE #######
 ##########################
 def backUpOptions(type, name=""):
-	exclude_dirs  = [ADDON_ID, 'cache', 'system', 'Thumbnails', 'peripheral_data', 'temp', 'My_Builds', 'keymaps']
+	exclude_dirs  = [ADDON_ID, 'cache', 'system', 'Thumbnails', 'peripheral_data', 'temp', 'My_Builds', 'keymaps', 'cdm']
 	exclude_files = ['Textures13.db', '.DS_Store', 'advancedsettings.xml', 'Thumbs.db', '.gitignore']
 	## TODO: fix these
 	bad_files     = [
@@ -1388,7 +1409,8 @@ def backUpOptions(type, name=""):
 					(os.path.join(ADDOND, 'plugin.video.gaia', 'cache.db')),
 					(os.path.join(ADDOND, 'plugin.video.gaia', 'meta.db')),
 					(os.path.join(ADDOND, 'plugin.video.seren', 'cache.db')),
-					(os.path.join(ADDOND, 'plugin.video.seren', 'torrentScrape.db'))]
+					(os.path.join(ADDOND, 'plugin.video.seren', 'torrentScrape.db')),
+					(os.path.join(ADDOND, 'script.module.simplecache', 'simplecache.db'))]
 
 	backup   = xbmc.translatePath(BACKUPLOCATION)
 	mybuilds = xbmc.translatePath(MYBUILDS)
@@ -1567,6 +1589,7 @@ def backUpOptions(type, name=""):
 						if file in LOGFILES: log("[Back Up] Type = '%s': Ignore %s" % (type, file), xbmc.LOGNOTICE); continue
 						elif os.path.join(base, file) in bad_files: log("[Back Up] Type = '%s': Ignore %s" % (type, file), xbmc.LOGNOTICE); continue
 						elif os.path.join('addons', 'packages') in fn: log("[Back Up] Type = '%s': Ignore %s" % (type, file), xbmc.LOGNOTICE); continue
+						elif os.path.join(ADDONS, 'inputstream.adaptive') in fn: log("[Back Up] Type = '%s': Ignore %s" % (type, file), xbmc.LOGNOTICE); continue
 						elif file.endswith('.csv'): log("[Back Up] Type = '%s': Ignore %s" % (type, file), xbmc.LOGNOTICE); continue
 						elif file.endswith('.pyo'): continue
 						elif file.endswith('.db') and 'Database' in base:
@@ -2301,7 +2324,8 @@ def clearCache(over=None):
 		(os.path.join(ADDOND, 'plugin.video.zanni', 'meta.5.db')),
 		(os.path.join(ADDOND, 'plugin.video.zanni', 'cache.providers.13.db')),
 		(os.path.join(ADDOND, 'plugin.video.seren', 'cache.db')),
-		(os.path.join(ADDOND, 'plugin.video.seren', 'torrentScrape.db'))]
+		(os.path.join(ADDOND, 'plugin.video.seren', 'torrentScrape.db')),
+		(os.path.join(ADDOND, 'script.module.simplecache', 'simplecache.db'))]
 
 	cachelist = [
 		(PROFILEADDONDATA),
@@ -2313,7 +2337,17 @@ def clearCache(over=None):
 		(os.path.join(ADDOND,'script.module.simple.downloader')),
 		(os.path.join(ADDOND,'plugin.video.itv','Images')),
 		(os.path.join(PROFILEADDONDATA,'script.module.simple.downloader')),
-		(os.path.join(PROFILEADDONDATA,'plugin.video.itv','Images'))]
+		(os.path.join(PROFILEADDONDATA,'plugin.video.itv','Images')),
+		(os.path.join(ADDOND, 'script.extendedinfo', 'images')),
+		(os.path.join(ADDOND, 'script.extendedinfo', 'TheMovieDB')),
+		(os.path.join(ADDOND, 'script.extendedinfo', 'YouTube')),
+		(os.path.join(ADDOND, 'plugin.program.iagl', 'temp_iagl')),
+		(os.path.join(ADDOND, 'plugin.program.iagl', 'list_cache')),
+		(os.path.join(ADDOND, 'plugin.program.iarl', 'temp_iarl')),
+		(os.path.join(ADDOND, 'plugin.program.iarl', 'list_cache')),
+		(os.path.join(ADDOND, 'plugin.program.autocompletion', 'Google')),
+		(os.path.join(ADDOND, 'plugin.program.autocompletion', 'Bing')),
+		(os.path.join(ADDOND, 'plugin.video.openmeta', '.storage'))]
 
 	delfiles = 0
 	excludes = ['meta_cache', 'archive_cache']
