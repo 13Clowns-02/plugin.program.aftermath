@@ -301,6 +301,15 @@ def checkBuild(name, ret):
 			elif ret == 'info':          return info
 			elif ret == 'all':           return name, version, url, minor, gui, kodi, theme, icon, fanart, preview, adult, info, description
 	else: return False
+	
+def checkInfo(name):
+	if not workingURL(name) == True: return False
+	link = openURL(name).replace('\n','').replace('\r','').replace('\t','')
+	match = re.compile('.+?ame="(.+?)".+?xtracted="(.+?)".+?ipsize="(.+?)".+?kin="(.+?)".+?reated="(.+?)".+?rograms="(.+?)".+?ideo="(.+?)".+?usic="(.+?)".+?icture="(.+?)".+?epos="(.+?)".+?cripts="(.+?)"').findall(link)
+	if len(match) > 0:
+		for name, extracted, zipsize, skin, created, programs, video, music, picture, repos, scripts in match:
+			return name, extracted, zipsize, skin, created, programs, video, music, picture, repos, scripts
+	else: return False
 
 def checkTheme(name, theme, ret):
 	themeurl = checkBuild(name, 'theme')
@@ -1263,7 +1272,10 @@ def asciiCheck(use=None, over=False):
 			DP.update(prog2,"[COLOR %s]Checking for non ASCII files" % COLOR2,'[COLOR %s]%s[/COLOR]' % (COLOR1, d), 'Please Wait[/COLOR]')
 			try:
 				file.encode('ascii')
+			except UnicodeEncodeError:
+				wiz.log("[ASCII Check] Illegal character found in file: {0}".format(item.filename))
 			except UnicodeDecodeError:
+				wiz.log("[ASCII Check] Illegal character found in file: {0}".format(item.filename))
 				badfile = os.path.join(base, file)
 				if yes:
 					try:

@@ -318,7 +318,10 @@ class ZipInfo (object):
             try:
                 return self.filename.encode('ascii'), self.flag_bits
             except UnicodeEncodeError:
+                wiz.log("[ASCII Check] Illegal character found in file: {0}".format(self.filename))
                 return self.filename.encode('utf-8'), self.flag_bits | 0x800
+            except UnicodeDecodeError:
+                wiz.log("[ASCII Check] Illegal character found in file: {0}".format(item.filename))
         else:
             return self.filename, self.flag_bits
 

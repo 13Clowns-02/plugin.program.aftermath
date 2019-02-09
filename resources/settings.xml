@@ -8,13 +8,15 @@
 		<setting id="latestversion" type="text" label="Latest Version: " enable="false" default=""/>
 		<setting id="lastbuildcheck" type="text" label="Next check for build update: " enable="false" default=""/>
 		<setting id="disableupdate" type="bool" label="Disable Update Notification" default="false"/>
-		<setting id="installmethod" type="enum" label="Which method would you like to use after Install?" values="Always Ask|Reload Profile|Force Close" default="2" enable="!eq(-4,false)"/>
+		<setting id="installmethod" type="enum" label="Which method would you like to use after Install?" values="Always Ask|Reload Profile|Force Close" default="2"/>
 		<setting type="lsep" label="Show Builds:"/>
 		<setting id="show15" type="bool" label="Show Isengard(v15.0) and Below Builds" default="true"/>
 		<setting id="show16" type="bool" label="Show Jarvis(v16.0) Builds" default="true"/>
 		<setting id="show17" type="bool" label="Show Krypton(v17.0) Builds" default="true"/>
 		<setting id="show18" type="bool" label="Show Leia(v18.0) Builds" default="true"/>
 		<setting id="seperate" type="bool" label="Do not seperate based off version" default="false"/>
+        
+        <!-- Hidden Settings -->
 		<setting id="installed" type="bool" label="Build Installed" visible="false" default="false" />
 		<setting id="extract" type="text" label="Extract Build %" visible="false" default="100" />
 		<setting id="errors" type="text" label="Extract Error" visible="false" default="" />
@@ -42,28 +44,35 @@
 		<setting id="crashlog" type="bool" label="Include Kodi Crash Logs" default="false"/>
 		<setting type="lsep" label="Maintenance Menu: "/>
 		<setting id="showmaint" type="bool" label="Show All Maintenance Sections" default="false"/>
-		<setting type="lsep" label="Backup Location: "/>
 		<setting id="path" type="folder" label="Choose Backup Storage Location" default=""/>
-		<setting id="rompath" type="folder" label="Choose Roms Extract Location Location" default=""/>
-		<setting type="lsep" label="Auto Cleanup On Startup:"/>
+		<!--<setting id="rompath" type="folder" label="Choose Roms Extract Location Location" default=""/>-->
+		<setting type="lsep" label="Auto Clean On Startup:"/>
 		<setting id="autoclean" type="bool" label="Enable Auto Clean" default="true"/>
 		<setting id="clearcache" type="bool" label="Clear Cache on Startup" default="true" enable="!eq(-1,false)"/>
 		<setting id="clearpackages" type="bool" label="Clear Packages on Startup" default="true" enable="!eq(-2,false)"/>
 		<setting id="clearthumbs" type="bool" label="Clear Week Old Thumbnails on Startup" default="true" enable="!eq(-3,false)"/>
-		<setting id="autocleanfeq" type="enum" label="How often would you like to Auto Clean on Startup?" values="Always|Daily|3 Days|Weekly" enable="!eq(-4,false)"/>
+		<setting id="autocleanfeq" type="enum" label="How often would you like to Auto Clean on Startup?" values="Always|Daily|3 Days|Weekly" default="3" enable="!eq(-4,false)"/>
 		<setting id="nextautocleanup" type="text" label="Next Auto Clean Up: " enable="false" visible="false" default=""/>
 		<setting type="lsep" label="Clearing Video Cache:"/>
 		<setting id="includevideo" type="bool" label="Include Video Addons in Clear Cache: " default="true"/>
-		<setting id="includeall" type="bool" label="Include All Addons: " default="true" enable="!eq(-1,false)" visible="!eq(-1,false)"/>
-		<setting id="includeexodusredux" type="bool" label="Include Exodus Redux DB: " default="true" enable="!eq(-6,false)" visible="!eq(-6,false)"/>
-		<setting id="includegaia" type="bool" label="Include Gaia Cache DB: " default="true" enable="!eq(-9,false)" visible="!eq(-9,false)"/>
-		<setting id="includemagicality" type="bool" label="Include Magicality Cache DB: " default="true" enable="!eq(-10,false)" visible="!eq(-10,false)"/>
-		<setting id="includeplacenta" type="bool" label="Include Placenta DB: " default="true" enable="!eq(-6,false)" visible="!eq(-6,false)"/>
-		<setting id="include13clowns" type="bool" label="Include 13Clowns DB: " default="true" enable="!eq(-7,false)" visible="!eq(-7,false)"/>
-		<setting id="includeseren" type="bool" label="Include Seren Cache DB: " default="true" enable="!eq(-9,false)" visible="!eq(-9,false)"/>
+		<setting id="includeall" type="bool" label="Include All Addons: " default="true" enable="!eq(-1,false)"/>
+        <setting id="include13clowns" type="bool" label="Include 13Clowns DB: " default="true" enable="eq(-1,false)" visible="System.HasAddon(plugin.video.13clowns)"/>
+		<setting id="includeexodusredux" type="bool" label="Include Exodus Redux DB: " default="true" enable="eq(-2,false)" visible="System.HasAddon(plugin.video.exodusredux)"/>
+		<setting id="includegaia" type="bool" label="Include Gaia Cache DB: " default="true" enable="eq(-3,false)" visible="System.HasAddon(plugin.video.gaia)"/>
+		<setting id="includemagicality" type="bool" label="Include Magicality Cache DB: " default="true" enable="eq(-4,false)" visible="System.HasAddon(plugin.video.magicality)"/>
+		<setting id="includeplacenta" type="bool" label="Include Placenta DB: " default="true" enable="eq(-5,false)" visible="System.HasAddon(plugin.video.placenta)"/>
+		<setting id="includeseren" type="bool" label="Include Seren Cache DB: " default="true" enable="eq(-6,false)" visible="System.HasAddon(plugin.video.seren)"/>
+        <setting id="includezanni" type="bool" label="Include Zanni Cache DB: " default="true" enable="eq(-7,false)" visible="System.HasAddon(plugin.video.zanni)"/>
 	</category>
 
 	<category label="Install Settings">
+        <setting type="lsep" label="Save Data When Installing Build:"/>
+        <setting id="keeptrakt" type="bool" label="Keep My Trakt Data" default="false"/>
+        <setting id="traktlastsave" type="text" label="Last Time Trakt Data Saved:" visible="!eq(-1, false)" enable="false"/>
+        <setting id="keepdebrid" type="bool" label="Keep My Debrid Data" default="false"/>
+        <setting id="debridlastsave" type="text" label="Last Time Debrid Data Saved:" visible="!eq(-1, false)" enable="false"/>
+        <setting id="keeplogin" type="bool" label="Keep My Login Data" default="false"/>
+        <setting id="loginlastsave" type="text" label="Last Time Login Data Saved:" visible="!eq(-1, false)" enable="false"/>
 		<setting type="lsep" label="Keep Settings When Installing Build:"/>
 		<setting id="keepfavourites" type="bool" label="Keep My Favourites" default="false"/>
 		<setting id="keepsources" type="bool" label="Keep My Sources" default="false"/>
@@ -82,102 +91,27 @@
 		<setting id="wizard3url" type="text" label="Wizard 3 URL: " enable="true" visible="!eq(-6,false)" default=""/>
 	</category>
 
-	<category label="Trakt Settings">
-		<setting type="lsep" label="Save Trakt Data:"/>
-		<setting id="keeptrakt" type="bool" label="Keep My Trakt Data" default="false"/>
-		<setting id="13clowns" type="text" label="$NUMBER[13]Clowns:" enable="false" default=""/>
-		<setting id="exodusredux" type="text" label="Exodus Redux: " enable="false" default=""/>
-		<setting id="gaia" type="text" label="Gaia: " enable="false" default=""/>
-		<setting id="placenta" type="text" label="Placenta: " enable="false" default=""/>
-		<setting id="magicality" type="text" label="Magicality: " enable="false" default=""/>
-		<setting id="seren" type="text" label="Seren: " enable="false" default=""/>
-		<setting id="trakt" type="text" label="Trakt: " enable="false" default=""/>
-		<setting id="zanni" type="text" label="Zanni:" enable="false" default=""/>
-		<setting id="traktlastsave" type="text" label="Last Time Trakt Saved: " enable="false" default=""/>
-		<setting id="keeptraktwizard" type="action" label="Trakt Save Data Menu - DOES NOTHING" action=""/>
-	</category>
-
-	<category label="Debrid Settings">
-		<setting type="lsep" label="Save Debrid Data:"/>
-		<setting id="keepdebrid" type="bool" label="Keep My Debrid Data" default="false"/>
-		<setting id="gaiard" type="text" label="Gaia RD: " enable="false" default=""/>
-		<setting id="gaiapm" type="text" label="Gaia PM: " enable="false" default=""/>
-		<setting id="serenrd" type="text" label="Seren RD: " enable="false" default=""/>
-		<setting id="serenpm" type="text" label="Seren PM: " enable="false" default=""/>
-		<setting id="rurlrd" type="text" label="ResolveURL RD: " enable="false" default=""/>
-		<setting id="rurlpm" type="text" label="ResolveURL PM: " enable="false" default=""/>
-		<setting id="urlrd" type="text" label="URLResolver RD: " enable="false" default=""/>
-		<setting id="urlpm" type="text" label="URLResolver PM: " enable="false" default=""/>
-		<setting id="debridlastsave" type="text" label="Last Time Debrid Saved: " enable="false" default=""/>
-		<setting id="keepdebridwizard" type="action" label="Debrid Save Data Menu - DOES NOTHING" action=""/>
-	</category>
-
-	<category label="Login Settings">
-		<setting type="lsep" label="Save Login Info:"/>
-		<setting id="keeplogin" type="bool" label="Keep My Login Info" default="false"/>
-		<setting id="fanart-13clowns" type="text" label="Fanart.tv - 13Clowns: " enable="false" default=""/>
-		<setting id="fanart-exodusredux" type="text" label="Fanart.tv - Exodus Redux: " enable="false" default=""/>
-		<setting id="fanart-gaia" type="text" label="Fanart.tv - Gaia: " enable="false" default=""/>
-		<setting id="fanart-magicality" type="text" label="Fanart.tv - Magicality: " enable="false" default=""/>
-		<setting id="fanart-metadatautils" type="text" label="Fanart.tv - script.module.metadatautils: " enable="false" default=""/>
-		<setting id="fanart-placenta" type="text" label="Fanart.tv - Placenta:" enable="false" default=""/>
-		<setting id="fanart-zanni" type="text" label="Fanart.tv - Zanni:" enable="false" default=""/>
-		<setting id="imdb-13clowns" type="text" label="IMDb - 13Clowns: " enable="false" default=""/>
-		<setting id="imdb_exodusredux" type="text" label="IMDb - ExodusRedux: " enable="false" default=""/>
-		<setting id="imdb-gaia" type="text" label="IMDb - Gaia: " enable="false" default=""/>
-		<setting id="imdb-magicality" type="text" label="IMDb - Magicality: " enable="false" default=""/>
-		<setting id="imdb-placenta" type="text" label="IMDb - Placenta: " enable="false" default=""/>
-		<setting id="imdb-zanni" type="text" label="IMDb - Zanni: " enable="false" default=""/>
-		<setting id="login-netflix" type="text" label="Netflix: " enable="false" default=""/>
-		<setting id="omdb-metadatautils" type="text" label="OMDb - script.module.metadatautils: " enable="false" default=""/>
-		<setting id="omdb-metahandler" type="text" label="OMDb - Metahandler: " enable="false" default=""/>
-		<setting id="login-opensubtitles" type="text" label="OpenSubtitles.org: " enable="false" default=""/>
-		<setting id="login-opensubsbyopensubs" type="text" label="OpenSubtitles.org by OpenSubtitles: " enable="false" default=""/>
-		<setting id="login-orion" type="text" label="Orion: " enable="false" default=""/>
-		<setting id="tmdb-13clowns" type="text" label="TMDb - 13Clowns: " enable="false" default=""/>
-		<setting id="tmdb-exodusredux" type="text" label="TMDb - ExodusRedux: " enable="false" default=""/>
-		<setting id="login-eis" type="text" label="TMDb - ExtendedInfo Script: " enable="false" default=""/>
-		<setting id="tmdb-gaia" type="text" label="TMDb - Gaia: " enable="false" default=""/>
-		<setting id="tmdb-magicality" type="text" label="TMDb - Magicality: " enable="false" default=""/>
-		<setting id="tmdb-metadatautils" type="text" label="TMDb - script.module.metadatautils: " enable="false" default=""/>
-		<setting id="tmdb-metahandler" type="text" label="TMDb - Metahandler: " enable="false" default=""/>
-		<setting id="tmdb-eis" type="text" label="TMDb - OpenInfo: " enable="false" default=""/>
-		<setting id="tmdb-openmeta" type="text" label="TMDb - OpenMeta: " enable="false" default=""/>
-		<setting id="tmdb-placenta" type="text" label="TMDb - Placenta: " enable="false" default=""/>
-		<setting id="tmdb-seren" type="text" label="TMDb - Seren: " enable="false" default=""/>
-		<setting id="trakt-openmeta" type="text" label="Trakt - OpenMeta: " enable="false" default=""/>
-		<setting id="trakt-seren" type="text" label="Trakt - Seren: " enable="false" default=""/>
-		<setting id="tvdb-metahandler" type="text" label="TVDB - Metahandler: " enable="false" default=""/>
-		<setting id="tvdb-openmeta" type="text" label="TVDB - OpenMeta: " enable="false" default=""/>
-		<setting id="tvdb-seren" type="text" label="TVDB - Seren: " enable="false" default=""/>
-		<setting id="location-yahoo" type="text" label="Yahoo! Weather: " enable="false" default=""/>
-		<setting id="keeploginwizard" type="action" label="Login Info Save Data Menu - DOES NOTHING" action=""/>
-	</category>
-
-	<category label="Misc Settings">
+	<category label="View Settings">
 		<setting id="developer" type="bool" label="Show Developer Menu: " enable="true" default=""/>
 		<setting id="adult" type="bool" label="Show Adult Addons: " enable="true" default="false"/>
 		<setting id="auto-view" type="bool" label="Enable Auto View" default="true"/>
-		<setting id="viewType" type="number" label="View Type" default="50" enable="!eq(-1,false)"/>
+		<setting id="viewType" type="number" label="View Type" default="50" visible="!eq(-1, false)" enable="!eq(-1,false)"/>
 		<setting type="lsep" label="Notification Window on Startup:"/>
-		<setting id="notify" type="bool" label="Disable Notification on Startup" />
+		<setting id="notify" type="bool" label="Disable Notification on Startup" default="false" />
 		<setting id="noteid" type="text" label="Latest Notification" visible="false" />
 		<setting id="notedismiss" type="bool" label="Dismiss or Remind me later" visible="false" />
 	</category>
 
 	<category label="Logging Settings">
 		<setting type="lsep" label="Event Logging in the Wizard:"/>
-		<setting id="addon_debug" type="bool" label="Enable Addon Debugging: " enable="true" default="true"/>
-		<setting type="lsep" visible="!eq(-1,false)" label="Level 0: No Logging"/>
-		<setting type="lsep" visible="!eq(-2,false)" label="Level 1: Normal Logging"/>
-		<setting type="lsep" visible="!eq(-3,false)" label="Level 2: Full Logging"/>
-		<setting id="debuglevel" type="enum" label="What level would you like the wizard to log?" visible="!eq(-4,false)" enable="!eq(-1,false)" values="Level 0|Level 1|Level 2" default="2"/>
-		<setting id="wizardlog" type="bool" label="Enable Writing to Wizard.Log: " visible="!eq(-5,false)" enable="true" default="true"/>
-		<setting id="autocleanwiz" type="bool" label="Automatically Clean up Wizard.Log: " visible="!eq(-6,false)" enable="!eq(-1,false)" default="true"/>
-		<setting id="wizlogcleanby" type="enum" label="How would you like to clean up the log wizard?" visible="!eq(-1,false)" values="By Days|By Size|By Lines" default="1"/>
-		<setting id="wizlogcleandays" type="enum" label="Keep how many days of wizard.log?" visible="eq(-1,0)+!eq(-2,false)" values="1 Day|2 Days|3 Days|7 Days" default="2"/>
-		<setting id="wizlogcleansize" type="enum" label="Max file size for wizard.log?" visible="eq(-2,1)+!eq(-3,false)" values="100 KB|200 KB|300 KB|400 KB|500 KB|1 MB" default="1"/>
-		<setting id="wizlogcleanlines" type="enum" label="Keep how many lines of wizard.log?" visible="eq(-3,2)+!eq(-4,false)" values="100|200|300|400|500" default="2"/>
+		<setting id="addon_debug" type="bool" label="Enable Wizard Logging:" default="true"/>
+		<setting id="debuglevel" type="enum" label="What level would you like the wizard to log?" enable="!eq(-1,false)" values="No Logging|Normal Logging|Full Logging" default="2"/>
+		<setting id="wizardlog" type="bool" label="Enable Writing to Wizard.Log:" visible="false" default="true"/>
+		<setting id="autocleanwiz" type="bool" label="Automatically Clean up Wizard Log: " enable="!eq(-3,false)" default="true"/>
+		<setting id="wizlogcleanby" type="enum" label="How would you like to clean up wizard.log?" enabled="!eq(-4, false)" values="By Days|By Size|By Lines" default="1"/>
+		<setting id="wizlogcleandays" type="enum" subsetting="true" label="Keep how many days of wizard.log?" enable="!eq(-5,false)" visible="eq(-1,0)+!eq(-2,false)" values="1 Day|2 Days|3 Days|7 Days" default="2"/>
+		<setting id="wizlogcleansize" type="enum" subsetting="true" label="Max file size for wizard.log?" enable="!eq(-6,false)" visible="eq(-2,1)+!eq(-3,false)" values="100 KB|200 KB|300 KB|400 KB|500 KB|1 MB" default="1"/>
+		<setting id="wizlogcleanlines" type="enum" subsetting="true" label="Keep how many lines of wizard.log?" enable="!eq(-7,false)" visible="eq(-3,2)+!eq(-4,false)" values="100|200|300|400|500" default="2"/>
 		<setting id="nextcleandate" type="text" label="Next Time Wizard Log Cleaned:" visible="false" default=""/>
 	</category>
 </settings>

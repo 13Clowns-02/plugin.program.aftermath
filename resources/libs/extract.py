@@ -85,6 +85,10 @@ def allWithProgress(_in, _out, dp, ignore, title):
 		try:
 			str(item.filename).encode('ascii')
 		except UnicodeDecodeError:
+			wiz.log("[ASCII Check] Illegal character found in file: {0}".format(item.filename))
+			continue
+		except UnicodeEncodeError:
+			wiz.log("[ASCII Check] Illegal character found in file: {0}".format(item.filename))
 			continue
 		count += 1; prog = int(count / nFiles * 100); size += item.file_size
 		file = str(item.filename).split('/')
